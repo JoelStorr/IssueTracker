@@ -11,6 +11,8 @@
 		402B7A0F2AE838CD00F10FB2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B7A0E2AE838CD00F10FB2 /* ContentView.swift */; };
 		402B7A112AE838CF00F10FB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402B7A102AE838CF00F10FB2 /* Assets.xcassets */; };
 		402B7A152AE838CF00F10FB2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402B7A142AE838CF00F10FB2 /* Preview Assets.xcassets */; };
+		402B7A1D2AE83AC800F10FB2 /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 402B7A1B2AE83AC800F10FB2 /* Main.xcdatamodeld */; };
+		402B7A1F2AE83CA500F10FB2 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B7A1E2AE83CA500F10FB2 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,9 @@
 		402B7A102AE838CF00F10FB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		402B7A122AE838CF00F10FB2 /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
 		402B7A142AE838CF00F10FB2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		402B7A1C2AE83AC800F10FB2 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
+		402B7A1E2AE83CA500F10FB2 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		402B7A202AE846EF00F10FB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +57,14 @@
 		402B7A0B2AE838CD00F10FB2 /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				402B7A202AE846EF00F10FB2 /* Info.plist */,
 				402B7A0C2AE838CD00F10FB2 /* IssueTrackerApp.swift */,
+				402B7A1E2AE83CA500F10FB2 /* DataController.swift */,
 				402B7A0E2AE838CD00F10FB2 /* ContentView.swift */,
 				402B7A102AE838CF00F10FB2 /* Assets.xcassets */,
 				402B7A122AE838CF00F10FB2 /* IssueTracker.entitlements */,
 				402B7A132AE838CF00F10FB2 /* Preview Content */,
+				402B7A1B2AE83AC800F10FB2 /* Main.xcdatamodeld */,
 			);
 			path = IssueTracker;
 			sourceTree = "<group>";
@@ -139,6 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402B7A1D2AE83AC800F10FB2 /* Main.xcdatamodeld in Sources */,
+				402B7A1F2AE83CA500F10FB2 /* DataController.swift in Sources */,
 				402B7A0F2AE838CD00F10FB2 /* ContentView.swift in Sources */,
 				402B7A0D2AE838CD00F10FB2 /* IssueTrackerApp.swift in Sources */,
 			);
@@ -274,6 +284,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IssueTracker/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -312,6 +323,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IssueTracker/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -359,6 +371,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		402B7A1B2AE83AC800F10FB2 /* Main.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				402B7A1C2AE83AC800F10FB2 /* Main.xcdatamodel */,
+			);
+			currentVersion = 402B7A1C2AE83AC800F10FB2 /* Main.xcdatamodel */;
+			path = Main.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 402B7A012AE838CD00F10FB2 /* Project object */;
 }
