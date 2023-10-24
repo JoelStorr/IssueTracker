@@ -31,6 +31,7 @@
 		402B7A212AE848A600F10FB2 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		402B7A232AE848B300F10FB2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		402B7A252AE84B3200F10FB2 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		402B7A272AE8570900F10FB2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +48,7 @@
 		402B7A002AE838CD00F10FB2 = {
 			isa = PBXGroup;
 			children = (
+				402B7A272AE8570900F10FB2 /* README.md */,
 				402B7A0B2AE838CD00F10FB2 /* IssueTracker */,
 				402B7A0A2AE838CD00F10FB2 /* Products */,
 			);
