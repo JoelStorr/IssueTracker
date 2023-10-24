@@ -11,6 +11,8 @@ import CoreData
 class DataController: ObservableObject{
     let container: NSPersistentCloudKitContainer
     
+    @Published var selectedFilter: Filter? = Filter.all
+    
     static var preview: DataController = {
         let dataConroller = DataController(inMemory: true)
         dataConroller.createSampleData()
