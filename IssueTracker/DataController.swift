@@ -64,7 +64,7 @@ class DataController: ObservableObject{
     
     
     //Delete single element
-    func delet(_ object: NSManagedObject){
+    func delete(_ object: NSManagedObject){
         objectWillChange.send()
         container.viewContext.delete(object)
         save()
