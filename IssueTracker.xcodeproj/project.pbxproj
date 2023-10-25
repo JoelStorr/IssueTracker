@@ -18,6 +18,7 @@
 		402B7A262AE84B3200F10FB2 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B7A252AE84B3200F10FB2 /* Filter.swift */; };
 		408984042AE8F2D10072AF29 /* Issue-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408984032AE8F2D10072AF29 /* Issue-CoreDataHelpers.swift */; };
 		408984062AE8F4AC0072AF29 /* Tag-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408984052AE8F4AC0072AF29 /* Tag-CoreDataHelpers.swift */; };
+		408984082AE901670072AF29 /* IssueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408984072AE901670072AF29 /* IssueRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		402B7A272AE8570900F10FB2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		408984032AE8F2D10072AF29 /* Issue-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Issue-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		408984052AE8F4AC0072AF29 /* Tag-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		408984072AE901670072AF29 /* IssueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				402B7A1E2AE83CA500F10FB2 /* DataController.swift */,
 				402B7A212AE848A600F10FB2 /* SidebarView.swift */,
 				402B7A0E2AE838CD00F10FB2 /* ContentView.swift */,
+				408984072AE901670072AF29 /* IssueRow.swift */,
 				402B7A232AE848B300F10FB2 /* DetailView.swift */,
 				408984032AE8F2D10072AF29 /* Issue-CoreDataHelpers.swift */,
 				408984052AE8F4AC0072AF29 /* Tag-CoreDataHelpers.swift */,
@@ -172,6 +175,7 @@
 				402B7A1F2AE83CA500F10FB2 /* DataController.swift in Sources */,
 				402B7A222AE848A600F10FB2 /* SidebarView.swift in Sources */,
 				402B7A0F2AE838CD00F10FB2 /* ContentView.swift in Sources */,
+				408984082AE901670072AF29 /* IssueRow.swift in Sources */,
 				402B7A0D2AE838CD00F10FB2 /* IssueTrackerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
