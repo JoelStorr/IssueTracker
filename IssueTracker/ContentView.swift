@@ -21,7 +21,12 @@ struct ContentView: View {
             .onDelete(perform: delete)
         }
         .navigationTitle("Issues")
-        .searchable(text: $dataController.filterText, tokens: $dataController.filterTokens, suggestedTokens: .constant(dataController.suggestedFilterTokens), prompt: "Filter issue or type # to add tags"){ tag in
+        .searchable(
+            text: $dataController.filterText,
+            tokens: $dataController.filterTokens, // Stores the selected Tags in an array
+            suggestedTokens: .constant(dataController.suggestedFilterTokens), //Shows unselected suggested Tags
+            prompt: "Filter issue or type # to add tags"
+        ){ tag in
             Text(tag.tagName)
         }
         

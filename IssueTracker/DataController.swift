@@ -25,6 +25,7 @@ class DataController: ObservableObject{
     }()
     
     
+    //Returns all the unselected Tags for suggestion under search as soon as you add a # to search field
     var suggestedFilterTokens: [Tag]{
         guard filterText.starts(with: "#") else { return []}
         
