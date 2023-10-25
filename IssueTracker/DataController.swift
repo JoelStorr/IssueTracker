@@ -14,6 +14,7 @@ class DataController: ObservableObject{
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedIssue: Issue?
     @Published var filterText = ""
+    @Published var filterTokens = [Tag]()
     
     private var saveTask: Task<Void, Error>?
     
@@ -22,6 +23,23 @@ class DataController: ObservableObject{
         dataConroller.createSampleData()
         return dataConroller
     }()
+    
+    
+    var suggestedFilterTokens: [Tag]{
+        guard filterText.starts(with: "#") else { return []}
+        
+        let trimmedFilterText = String(filterText.dropFirst()).trimmingCharacters(in: .whitespaces)
+        let request = Tag.fetchRequest()
+        
+        if trimmedFilterText.isEmpty == false {
+            request.predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmedFilterText)
+        }
+        
+        return (try? container.viewContext.fetch(request).sorted()) ?? []
+    }
+    
+    
+    
     
     init(inMemory: Bool = false){
         container = NSPersistentCloudKitContainer(name: "Main")
@@ -137,7 +155,7 @@ class DataController: ObservableObject{
         
     }
  
-    
+    //Handles the Search and Filter Quereis
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
@@ -160,6 +178,14 @@ class DataController: ObservableObject{
             predicates.append(combinedPredicate)
         }
        
+        //Filters out only the elements that contains all of the searchd Tags
+        if filterTokens.isEmpty == false {
+            for filterToken in filterTokens {
+                let tokenPredicate = NSPredicate(format: "tags CONTAINS %@", filterToken)
+                predicates.append(tokenPredicate)
+            }
+        }
+        
         
         let request = Issue.fetchRequest()
         //Alows you to chaine a number of predicates together
