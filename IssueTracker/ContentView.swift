@@ -29,6 +29,45 @@ struct ContentView: View {
         ){ tag in
             Text(tag.tagName)
         }
+        //Handles sorting UI for the underlying search results
+        .toolbar{
+            Menu{
+                Button(dataController.filterEnabled ? "Turn Filter Off" : "Turn Filter On"){
+                    dataController.filterEnabled.toggle()
+                }
+                Divider()
+                Menu("Sort By"){
+                    Picker("Sort By", selection: $dataController.sortType){
+                        Text("Date Created").tag(SortType.dateCreated)
+                        Text("Date Modified").tag(SortType.dateModified)
+                    }
+                    
+                    Divider()
+                    
+                    Picker("Sort order", selection: $dataController.sortNewestFirst){
+                        Text("Newest to Oldest").tag(true)
+                        Text("Oldest to Newest").tag(false)
+                    }
+                }
+                
+                Picker("Status", selection: $dataController.filterStatus){
+                    Text("All").tag(Status.all)
+                    Text("Open").tag(Status.open)
+                    Text("Closed").tag(Status.closed)
+                }
+                
+                Picker("Priority", selection: $dataController.filterPriority){
+                    Text("All").tag(-1)
+                    Text("Low").tag(0)
+                    Text("Medium").tag(1)
+                    Text("High").tag(2)
+                }
+                
+            } label: {
+                Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+            }
+            
+        }
         
     }
     

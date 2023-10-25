@@ -8,6 +8,15 @@
 import CoreData
 
 
+enum SortType: String{
+    case dateCreated = "creationDate"
+    case dateModified = "modificationDate"
+}
+
+enum Status {
+    case all, open, closed
+}
+
 class DataController: ObservableObject{
     let container: NSPersistentCloudKitContainer
     
@@ -15,6 +24,14 @@ class DataController: ObservableObject{
     @Published var selectedIssue: Issue?
     @Published var filterText = ""
     @Published var filterTokens = [Tag]()
+    
+    
+    @Published var filterEnabled = false
+    @Published var filterPriority = -1
+    @Published var filterStatus = Status.all
+    @Published var sortType = SortType.dateCreated
+    @Published var sortNewestFirst = true
+    
     
     private var saveTask: Task<Void, Error>?
     
@@ -38,8 +55,6 @@ class DataController: ObservableObject{
         
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
-    
-    
     
     
     init(inMemory: Bool = false){
@@ -67,10 +82,12 @@ class DataController: ObservableObject{
         }
     }
     
+    
     //Updates the UI and Local data when a chinge in cloudKit happens
     func remoteStoreChanaged(_ notification: Notification){
         objectWillChange.send()
     }
+    
     
     func createSampleData(){
         let viewContext = container.viewContext
@@ -93,6 +110,7 @@ class DataController: ObservableObject{
         
         try? viewContext.save()
     }
+    
     
     //Only saves when there are chnages in the view context
     func save(){
@@ -135,6 +153,7 @@ class DataController: ObservableObject{
         }
     }
     
+    
     func deleteAll(){
         let request1: NSFetchRequest<NSFetchRequestResult> = Tag.fetchRequest()
         delete(request1)
@@ -153,7 +172,6 @@ class DataController: ObservableObject{
         let allTagsSet = Set(allTags)
         let difference = allTagsSet.symmetricDifference(issue.issueTags)
         return difference.sorted()
-        
     }
  
     //Handles the Search and Filter Quereis
@@ -187,14 +205,27 @@ class DataController: ObservableObject{
             }
         }
         
+        //Handle Filters
+        if filterEnabled {
+            if filterPriority >= 0 {
+                let priorityFilter = NSPredicate(format: "priority = %@", filterPriority)
+                predicates.append(priorityFilter)
+            }
+            
+            if filterStatus != .all {
+                let lookForClosed = filterStatus == .closed
+                let statusFilter = NSPredicate(format: "completed = %@", NSNumber(value: lookForClosed))
+                predicates.append(statusFilter)
+            }
+        }
+        
         
         let request = Issue.fetchRequest()
         //Alows you to chaine a number of predicates together
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
         return allIssues.sorted()
     }
-    
-    
 }
 
