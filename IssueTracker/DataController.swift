@@ -14,6 +14,8 @@ class DataController: ObservableObject{
     @Published var selectedFilter: Filter? = Filter.all
     @Published var selectedIssue: Issue?
     
+    private var saveTask: Task<Void, Error>?
+    
     static var preview: DataController = {
         let dataConroller = DataController(inMemory: true)
         dataConroller.createSampleData()
@@ -76,6 +78,17 @@ class DataController: ObservableObject{
     func save(){
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
+        }
+    }
+    
+    
+    //Waits three seconds before saving the current task
+    func queueSave(){
+        saveTask?.cancel()
+        
+        saveTask = Task{ @MainActor in
+            try await Task.sleep(for: .seconds(3))
+            save()
         }
     }
     
