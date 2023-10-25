@@ -55,6 +55,7 @@ struct ContentView: View {
                     Text("Open").tag(Status.open)
                     Text("Closed").tag(Status.closed)
                 }
+                .disabled(dataController.filterEnabled == false)
                 
                 Picker("Priority", selection: $dataController.filterPriority){
                     Text("All").tag(-1)
@@ -62,9 +63,11 @@ struct ContentView: View {
                     Text("Medium").tag(1)
                     Text("High").tag(2)
                 }
+                .disabled(dataController.filterEnabled == false)
                 
             } label: {
                 Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+                    .symbolVariant(dataController.filterEnabled ? .fill : .none )
             }
             
         }
