@@ -26,11 +26,27 @@ class DataController: ObservableObject{
         if inMemory{
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
+        
+        //Automatically syncs data with iCloud
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        //In memory changes over cloud changes when merge conflict happens
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
+        //tells us when a change in cloudKit happens
+        container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        //When the change happens pleas call the remoteStoreChanged
+        NotificationCenter.default.addObserver(forName: .NSPersistentStoreRemoteChange, object: container.persistentStoreCoordinator, queue: .main, using: remoteStoreChanaged)
+        
         container.loadPersistentStores { storeDescription, error in
             if let error{
                 fatalError("Fatel error loading store: \(error.localizedDescription)")
             }
         }
+    }
+    
+    //Updates the UI and Local data when a chinge in cloudKit happens
+    func remoteStoreChanaged(_ notification: Notification){
+        objectWillChange.send()
     }
     
     func createSampleData(){
