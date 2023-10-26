@@ -246,12 +246,41 @@ class DataController: ObservableObject{
         if let tag = selectedFilter?.tag {
             issue.addToTags(tag)
         }
-        
         save()
-        
         selectedIssue = issue
-        
-        
+    }
+    
+    
+    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+        (try? container.viewContext.count(for: fetchRequest)) ?? 0
+    }
+    
+    func hasEarned(award: Award) -> Bool{
+        switch award.criterion {
+        case "issues":
+                //return true if they edded a sertan number of issues
+            let fetchReqeust = Issue.fetchRequest()
+            let awardCount = count(for: fetchReqeust)
+            return awardCount >= award.value
+            
+        case "closed":
+            //return true if they closed a sertan number of issues
+            let fetchReqeust = Issue.fetchRequest()
+            fetchReqeust.predicate = NSPredicate(format: "completed = true")
+            let awardCount = count(for: fetchReqeust)
+            return awardCount >= award.value
+            
+        case "tags":
+            //return true if they created a sertan number of Tags
+            let fetchReqeusht = Tag.fetchRequest()
+            let awardCount = count(for: fetchReqeusht)
+            return awardCount >= award.value
+            
+        default:
+            //unknown awart cryterion; This should never be allowed
+            //fatalError("Unknown award criterion: \(award.criterion)")
+            return false
+        }
     }
     
 }
