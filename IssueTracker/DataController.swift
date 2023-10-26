@@ -173,7 +173,8 @@ class DataController: ObservableObject{
         let difference = allTagsSet.symmetricDifference(issue.issueTags)
         return difference.sorted()
     }
- 
+    
+    
     //Handles the Search and Filter Quereis
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
@@ -196,7 +197,7 @@ class DataController: ObservableObject{
             let combinedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
             predicates.append(combinedPredicate)
         }
-       
+        
         //Filters out only the elements that contains all of the searchd Tags
         if filterTokens.isEmpty == false {
             for filterToken in filterTokens {
@@ -225,7 +226,7 @@ class DataController: ObservableObject{
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         request.sortDescriptors = [NSSortDescriptor(key: sortType.rawValue, ascending: sortNewestFirst)]
         let allIssues = (try? container.viewContext.fetch(request)) ?? []
-        return allIssues.sorted()
+        return allIssues
     }
     
     
@@ -255,10 +256,11 @@ class DataController: ObservableObject{
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
     
+    
     func hasEarned(award: Award) -> Bool{
         switch award.criterion {
         case "issues":
-                //return true if they edded a sertan number of issues
+            //return true if they edded a sertan number of issues
             let fetchReqeust = Issue.fetchRequest()
             let awardCount = count(for: fetchReqeust)
             return awardCount >= award.value
@@ -282,6 +284,5 @@ class DataController: ObservableObject{
             return false
         }
     }
-    
 }
 
