@@ -15,7 +15,9 @@ struct SidebarView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
     
     
-    
+    @State private var tagToRename: Tag?
+    @State private var renamingTag = false
+    @State private var tagName = ""
     
     
     
@@ -41,6 +43,13 @@ struct SidebarView: View {
                     NavigationLink(value: filter){
                         Label(filter.name, systemImage: filter.icon)
                             .badge(filter.tag?.tagActiveIssue.count ?? 0)
+                            .contextMenu {
+                                Button{
+                                    renameTag(filter)
+                                } label: {
+                                    Label("Rename", systemImage: "pencil")
+                                }
+                            }
                     }
                 }
                 .onDelete(perform: delete)
@@ -62,6 +71,11 @@ struct SidebarView: View {
             #endif
             
         }
+        .alert("Rename tag", isPresented: $renamingTag){
+            Button("OK", action: completeRename)
+            Button("Cancle", role: .cancel){}
+            TextField("New name", text: $tagName)
+        }
     }
     
     func delete(_ offsets: IndexSet){
@@ -69,6 +83,18 @@ struct SidebarView: View {
             let item = tags[offset]
             dataController.delete(item)
         }
+    }
+    
+    func renameTag(_ filter: Filter){
+        tagToRename = filter.tag
+        tagName = filter.name
+        renamingTag = true
+    }
+    
+    
+    func completeRename(){
+        tagToRename?.name = tagName
+        dataController.save()
     }
 }
 
