@@ -114,6 +114,8 @@ class DataController: ObservableObject{
     
     //Only saves when there are chnages in the view context
     func save(){
+            saveTask?.cancel()
+        
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
         }
