@@ -18,7 +18,7 @@ extension Tag{
     }
     
     
-    var tagActiveIssue: [Issue] {
+    var tagActiveIssues: [Issue] {
         let result = issues?.allObjects as? [Issue] ?? []
         return result.filter { $0.completed == false }
     }
