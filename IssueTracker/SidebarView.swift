@@ -30,61 +30,17 @@ struct SidebarView: View {
     var body: some View {
         List(selection: $dataController.selectedFilter){
             Section("Smart Filters"){
-                ForEach(smartFilters){ filter in
-                    NavigationLink(value: filter) {
-                        Label(LocalizedStringKey(filter.name), systemImage: filter.icon)
-                    }
-                }
-                
+                ForEach(smartFilters, content: SmartFilterRow.init)
             }
-            
             Section("Tags"){
                 ForEach(tagFilters){ filter in
-                    NavigationLink(value: filter){
-                        Label(filter.name, systemImage: filter.icon)
-                            .badge(filter.activeIssuesCount)
-                            .contextMenu {
-                                Button{
-                                    renameTag(filter)
-                                } label: {
-                                    Label("Rename", systemImage: "pencil")
-                                }
-                                Button(role: .destructive) {
-                                    delete(filter)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
-                            .accessibilityElement()
-                            .accessibilityLabel(filter.name)
-                            .accessibilityHint("\(filter.activeIssuesCount) issues")
-                    }
+                    UserFilterRow(filter: filter , rename: renameTag, delete: delete)
                 }
                 .onDelete(perform: delete)
-                
             }
         }
         .toolbar{
-            Button(action: dataController.newTag) {
-                Label("Add tag", systemImage: "plus")
-            }
-            
-            Button{
-                showingAwards.toggle()
-            } label: {
-                Label("Show awards", systemImage: "rosette")
-            }
-            
-            
-            #if DEBUG
-            Button{
-                dataController.deleteAll()
-                dataController.createSampleData()
-            } label: {
-                Label("ADD SAMPLES", systemImage: "flame")
-            }
-            #endif
-            
+           SidebarViewToolbar(showingAwards: $showingAwards)
         }
         .alert("Rename tag", isPresented: $renamingTag){
             Button("OK", action: completeRename)
@@ -102,11 +58,13 @@ struct SidebarView: View {
         }
     }
     
+    
     func delete(_ filter: Filter){
         guard let tag = filter.tag else { return }
         dataController.delete(tag)
         dataController.save()
     }
+    
     
     func renameTag(_ filter: Filter){
         tagToRename = filter.tag
