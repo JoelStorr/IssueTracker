@@ -25,7 +25,7 @@ struct ContentView: View {
             text: $dataController.filterText,
             tokens: $dataController.filterTokens, // Stores the selected Tags in an array
             suggestedTokens: .constant(dataController.suggestedFilterTokens), //Shows unselected suggested Tags
-            prompt: "Filter issue or type # to add tags"
+            prompt: "Filter issues, or type # to add tags"
         ){ tag in
             Text(tag.tagName)
         }

@@ -13,7 +13,6 @@ struct IssueRow: View {
     @ObservedObject var issue: Issue
     
     
-    
     var body: some View {
         NavigationLink(value: issue){
             HStack{
@@ -32,7 +31,7 @@ struct IssueRow: View {
                 Spacer()
                 
                 VStack(alignment: .trailing){
-                    Text(issue.issueCreationDate.formatted(date: .numeric, time: .omitted))
+                    Text(issue.issueFormattedCreationDate)
                         .font(.subheadline)
                         .accessibilityLabel(issue.issueCreationDate.formatted(date: .abbreviated, time: .omitted))
                     
