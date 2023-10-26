@@ -15,6 +15,10 @@ struct SidebarView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var tags: FetchedResults<Tag>
     
     
+    
+    
+    
+    
     var tagFilters: [Filter] {
         tags.map{ tag in
             Filter(id: tag.tagID, name: tag.tagName, icon: "tag", tag: tag)
@@ -44,12 +48,19 @@ struct SidebarView: View {
             }
         }
         .toolbar{
+            Button(action: dataController.newTag) {
+                Label("Add tag", systemImage: "plus")
+            }
+            
+            #if DEBUG
             Button{
                 dataController.deleteAll()
                 dataController.createSampleData()
             } label: {
                 Label("ADD SAMPLES", systemImage: "flame")
             }
+            #endif
+            
         }
     }
     
