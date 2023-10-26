@@ -18,7 +18,7 @@ struct NoIssueView: View {
             .foregroundStyle(.secondary)
         
         Button("New Issue"){
-            //TODO: Add code to add an issue
+            dataController.newIssue()
         }
     }
 }
