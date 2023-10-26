@@ -24,6 +24,8 @@
 		40A691C42AEA499D00B866EE /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A691C32AEA499D00B866EE /* Bundle-Decodable.swift */; };
 		40A691C72AEA4EED00B866EE /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A691C52AEA4EEC00B866EE /* Colors.xcassets */; };
 		40A691C82AEA4EED00B866EE /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = 40A691C62AEA4EEC00B866EE /* Awards.json */; };
+		40A691CA2AEA500400B866EE /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A691C92AEA500400B866EE /* Award.swift */; };
+		40A691CC2AEA50F500B866EE /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A691CB2AEA50F500B866EE /* AwardsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		40A691C32AEA499D00B866EE /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		40A691C52AEA4EEC00B866EE /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		40A691C62AEA4EEC00B866EE /* Awards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Awards.json; sourceTree = "<group>"; };
+		40A691C92AEA500400B866EE /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
+		40A691CB2AEA50F500B866EE /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				402B7A132AE838CF00F10FB2 /* Preview Content */,
 				402B7A1B2AE83AC800F10FB2 /* Main.xcdatamodeld */,
 				40A691C32AEA499D00B866EE /* Bundle-Decodable.swift */,
+				40A691C92AEA500400B866EE /* Award.swift */,
+				40A691CB2AEA50F500B866EE /* AwardsView.swift */,
 				40A691C62AEA4EEC00B866EE /* Awards.json */,
 				40A691C52AEA4EEC00B866EE /* Colors.xcassets */,
 			);
@@ -185,6 +191,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				402B7A262AE84B3200F10FB2 /* Filter.swift in Sources */,
+				40A691CA2AEA500400B866EE /* Award.swift in Sources */,
+				40A691CC2AEA50F500B866EE /* AwardsView.swift in Sources */,
 				408984062AE8F4AC0072AF29 /* Tag-CoreDataHelpers.swift in Sources */,
 				402B7A1D2AE83AC800F10FB2 /* Main.xcdatamodeld in Sources */,
 				408984042AE8F2D10072AF29 /* Issue-CoreDataHelpers.swift in Sources */,
