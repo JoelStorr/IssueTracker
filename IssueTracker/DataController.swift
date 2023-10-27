@@ -16,7 +16,13 @@ enum Status {
     case all, open, closed
 }
 
+
+
+/// An enviroment singleton responsible for managing our Core Data stack, including handling  saving,
+/// counting fetch requests, tracking orders, and dealing with sample data
 class DataController: ObservableObject {
+    
+    /// The lone CloudKit container used to store all our data
     let container: NSPersistentCloudKitContainer
 
     @Published var selectedFilter: Filter? = Filter.all
@@ -52,9 +58,16 @@ class DataController: ObservableObject {
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
 
+    /// Initilizes a data controller, either in memory (for testing use such as saving),
+    /// or in permantent storage (for use in regular app runs).
+    ///
+    /// Defaults to permanent storage.
+    /// - Parameter inMemory: Wether to store data in temporary memory or not
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
-
+        
+        // For testing and previewing purpose, we create a
+        // temporary, in-memory database, by writing to /dev/null
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")
         }
@@ -64,7 +77,8 @@ class DataController: ObservableObject {
         // In memory changes over cloud changes when merge conflict happens
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
-        // Tells us when a change in cloudKit happens
+        // Tells us when a change in cloudKit happens,
+        // so we can have Cloud and local storage in sync
         container.persistentStoreDescriptions.first?.setOption(
             true as NSNumber,
             forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey
@@ -109,7 +123,10 @@ class DataController: ObservableObject {
         try? viewContext.save()
     }
 
-    // Only saves when there are chnages in the view context
+    
+    /// Saves our Core data context if there are changes, This silently ignores
+    /// any errors caused by saving, but this should be fine because
+    /// all our attributes are optional.
     func save() {
         saveTask?.cancel()
 
@@ -140,7 +157,7 @@ class DataController: ObservableObject {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         batchDeleteRequest.resultType = .resultTypeObjectIDs // Return the IDs of the elements that got deleted
 
-        // Execute the Batch Delete request
+        // ⚠️: Execute the Batch Delete request
         if let delete = try? container.viewContext.execute(batchDeleteRequest) as? NSBatchDeleteResult {
             // Returns the object IDs that were deleted
             let changes = [NSDeletedObjectsKey: delete.result as? [NSManagedObjectID] ?? []]
@@ -168,7 +185,10 @@ class DataController: ObservableObject {
         return difference.sorted()
     }
 
-    // Handles the Search and Filter Quereis
+    
+    /// Runs and fetch request with various predicates taht filter the user's issues based on
+    /// tag, title, and content text, search tokesn, priority and completion status.
+    /// - Returns: Returns an array of all matching items
     func issuesForSelectedFilter() -> [Issue] {
         let filter = selectedFilter ?? .all
         var predicates = [NSPredicate]()
@@ -236,6 +256,9 @@ class DataController: ObservableObject {
         issue.creationDate = .now
         issue.priority = 1
 
+        // If we are browsing a user ccreated tag, imidiatly
+        // add this new issue to the tag otherwise it won't appear in
+        // the list of issues they see.
         if let tag = selectedFilter?.tag {
             issue.addToTags(tag)
         }
