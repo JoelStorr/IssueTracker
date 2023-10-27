@@ -5,31 +5,46 @@
 //  Created by Joel Storr on 27.10.23.
 //
 
+import CoreData
 import XCTest
 
+@testable import IssueTracker
+
 final class TagTest: BaseTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testCreatingTagsAndIssues() {
+        let targetCount = 10
+        
+        for _ in 0..<targetCount {
+            let tag = Tag(context: managedObjectContext)
+            
+            for _ in 0..<targetCount {
+                let issue = Issue(context: managedObjectContext)
+                tag.addToIssues(issue)
+            }
         }
+        
+        XCTAssertEqual(
+            dataController.count(for: Tag.fetchRequest()),
+            targetCount,
+            "There should be \(targetCount) tags."
+        )
+        
+        XCTAssertEqual(
+            dataController.count(for: Issue.fetchRequest()),
+            targetCount * targetCount,
+            "There should be \(targetCount * targetCount) tags."
+        )
     }
-
+    
+    func testDeletingTagsDoesNotDeleteIssues() throws {
+        dataController.createSampleData()
+        
+        let reques = NSFetchRequest<Tag>(entityName: "Tag")
+        let tags = try managedObjectContext.fetch(reques)
+        
+        dataController.delete(tags[0])
+        
+        XCTAssertEqual(dataController.count(for: Tag.fetchRequest()), 4, "There should be four tags after deleting 1 from our sample data.")
+        XCTAssertEqual(dataController.count(for: Issue.fetchRequest()), 50, "There should be 50 issues after deleting 1 tag from our sample data.")
+    }
 }
