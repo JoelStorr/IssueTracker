@@ -40,6 +40,17 @@
                ReferencedContainer = "container:IssueTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "407B5B752AEC2F2500BE34C2"
+               BuildableName = "IssueTrackerUITests.xctest"
+               BlueprintName = "IssueTrackerUITests"
+               ReferencedContainer = "container:IssueTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
