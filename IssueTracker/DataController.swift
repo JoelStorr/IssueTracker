@@ -16,12 +16,10 @@ enum Status {
     case all, open, closed
 }
 
-
-
 /// An enviroment singleton responsible for managing our Core Data stack, including handling  saving,
 /// counting fetch requests, tracking orders, and dealing with sample data
 class DataController: ObservableObject {
-    
+
     /// The lone CloudKit container used to store all our data
     let container: NSPersistentCloudKitContainer
 
@@ -79,7 +77,7 @@ class DataController: ObservableObject {
     /// - Parameter inMemory: Wether to store data in temporary memory or not
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
-        
+
         // For testing and previewing purpose, we create a
         // temporary, in-memory database, by writing to /dev/null
         if inMemory {
@@ -137,7 +135,6 @@ class DataController: ObservableObject {
         try? viewContext.save()
     }
 
-    
     /// Saves our Core data context if there are changes, This silently ignores
     /// any errors caused by saving, but this should be fine because
     /// all our attributes are optional.
@@ -199,7 +196,6 @@ class DataController: ObservableObject {
         return difference.sorted()
     }
 
-    
     /// Runs and fetch request with various predicates taht filter the user's issues based on
     /// tag, title, and content text, search tokesn, priority and completion status.
     /// - Returns: Returns an array of all matching items
