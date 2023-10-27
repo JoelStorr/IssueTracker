@@ -58,13 +58,27 @@ class DataController: ObservableObject {
         return (try? container.viewContext.fetch(request).sorted()) ?? []
     }
 
+    // Makes sure that we load our Models only once.
+    // Importent to prevent duplicate modles while testing
+    static let model: NSManagedObjectModel = {
+        guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
+            fatalError("Failed to load model file.")
+        }
+
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("Failled to load modles file")
+        }
+
+        return managedObjectModel
+    }()
+
     /// Initilizes a data controller, either in memory (for testing use such as saving),
     /// or in permantent storage (for use in regular app runs).
     ///
     /// Defaults to permanent storage.
     /// - Parameter inMemory: Wether to store data in temporary memory or not
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Main")
+        container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
         
         // For testing and previewing purpose, we create a
         // temporary, in-memory database, by writing to /dev/null
