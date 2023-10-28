@@ -45,6 +45,7 @@
 		40A71BA32AEAEB7A000E7850 /* ContentViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A71BA22AEAEB7A000E7850 /* ContentViewToolbar.swift */; };
 		40A71BA52AEAEC73000E7850 /* TagsMenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A71BA42AEAEC73000E7850 /* TagsMenueView.swift */; };
 		40A71BA72AEAEDB2000E7850 /* SmartFilterRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A71BA62AEAEDB2000E7850 /* SmartFilterRow.swift */; };
+		40FAC7C52AECE64400699E2E /* SidebarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FAC7C42AECE64400699E2E /* SidebarViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		40A71BA22AEAEB7A000E7850 /* ContentViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewToolbar.swift; sourceTree = "<group>"; };
 		40A71BA42AEAEC73000E7850 /* TagsMenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsMenueView.swift; sourceTree = "<group>"; };
 		40A71BA62AEAEDB2000E7850 /* SmartFilterRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFilterRow.swift; sourceTree = "<group>"; };
+		40FAC7C42AECE64400699E2E /* SidebarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				40A71BA62AEAEDB2000E7850 /* SmartFilterRow.swift */,
 				406C858F2AEAF13D0039A0CC /* UserFilterRow.swift */,
 				402B7A252AE84B3200F10FB2 /* Filter.swift */,
+				40FAC7C42AECE64400699E2E /* SidebarViewModel.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				40A691C42AEA499D00B866EE /* Bundle-Decodable.swift in Sources */,
 				402B7A242AE848B300F10FB2 /* DetailView.swift in Sources */,
 				402B7A1F2AE83CA500F10FB2 /* DataController.swift in Sources */,
+				40FAC7C52AECE64400699E2E /* SidebarViewModel.swift in Sources */,
 				40A71BA32AEAEB7A000E7850 /* ContentViewToolbar.swift in Sources */,
 				402B7A222AE848A600F10FB2 /* SidebarView.swift in Sources */,
 				402B7A0F2AE838CD00F10FB2 /* ContentView.swift in Sources */,
