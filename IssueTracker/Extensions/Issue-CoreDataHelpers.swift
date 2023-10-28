@@ -51,6 +51,12 @@ extension Issue {
             return NSLocalizedString("Open", comment: "This issues is currently unresolved")
         }
     }
+    
+    var issueReminderTime: Date {
+        get { reminderTime ?? .now }
+        set { reminderTime = newValue }
+    }
+    
 
     static var example: Issue {
         let controller = DataController(inMemory: true)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40287BEB2AED889800B26804 /* DataController-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40287BEA2AED889800B26804 /* DataController-Notifications.swift */; };
 		402B7A0D2AE838CD00F10FB2 /* IssueTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B7A0C2AE838CD00F10FB2 /* IssueTrackerApp.swift */; };
 		402B7A0F2AE838CD00F10FB2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B7A0E2AE838CD00F10FB2 /* ContentView.swift */; };
 		402B7A112AE838CF00F10FB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402B7A102AE838CF00F10FB2 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40287BEA2AED889800B26804 /* DataController-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-Notifications.swift"; sourceTree = "<group>"; };
 		402B7A092AE838CD00F10FB2 /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		402B7A0C2AE838CD00F10FB2 /* IssueTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTrackerApp.swift; sourceTree = "<group>"; };
 		402B7A0E2AE838CD00F10FB2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				402B7A102AE838CF00F10FB2 /* Assets.xcassets */,
 				402B7A0C2AE838CD00F10FB2 /* IssueTrackerApp.swift */,
 				402B7A1E2AE83CA500F10FB2 /* DataController.swift */,
+				40287BEA2AED889800B26804 /* DataController-Notifications.swift */,
 				402B7A132AE838CF00F10FB2 /* Preview Content */,
 			);
 			path = IssueTracker;
@@ -445,6 +448,7 @@
 				40A691CC2AEA50F500B866EE /* AwardsView.swift in Sources */,
 				40A71BA72AEAEDB2000E7850 /* SmartFilterRow.swift in Sources */,
 				408984062AE8F4AC0072AF29 /* Tag-CoreDataHelpers.swift in Sources */,
+				40287BEB2AED889800B26804 /* DataController-Notifications.swift in Sources */,
 				402B7A1D2AE83AC800F10FB2 /* Main.xcdatamodeld in Sources */,
 				408984042AE8F2D10072AF29 /* Issue-CoreDataHelpers.swift in Sources */,
 				40A691C42AEA499D00B866EE /* Bundle-Decodable.swift in Sources */,
