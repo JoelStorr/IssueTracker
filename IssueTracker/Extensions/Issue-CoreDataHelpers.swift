@@ -9,6 +9,8 @@ import Foundation
 
 // Removes the Optionality of core data types
 extension Issue {
+    
+    
 
     var issueTitle: String {
         get { title ?? "" }
@@ -34,10 +36,12 @@ extension Issue {
     }
 
     var issueTagsList: String {
-        guard let tags else {return "No tags"}
+        let noTag = NSLocalizedString("No tags", comment: "There user has not created any tags jet")
+        
+        guard let tags else {return noTag}
 
         if tags.count == 0 {
-            return "No tags"
+            return noTag
         } else {
             return issueTags.map(\.tagName).formatted()
         }
@@ -45,9 +49,9 @@ extension Issue {
 
     var issueStatus: String {
         if completed {
-            return "Closed"
+            return NSLocalizedString("Closed", comment: "This issues has been resovled by the user")
         } else {
-            return "Open"
+            return NSLocalizedString("Open", comment: "This issues is currently unresolved")
         }
     }
 
