@@ -11,8 +11,8 @@ struct IssueRow: View {
 
     @EnvironmentObject var dataController: DataController
     @StateObject var viewModel: ViewModel
-    
-    init(issue: Issue){
+
+    init(issue: Issue) {
         let viewModel = ViewModel(issue: issue)
         _viewModel = StateObject(wrappedValue: viewModel)
     }

@@ -9,9 +9,6 @@ import Foundation
 
 // Removes the Optionality of core data types
 extension Issue {
-    
-    
-
     var issueTitle: String {
         get { title ?? "" }
         set { title = newValue }
@@ -37,7 +34,7 @@ extension Issue {
 
     var issueTagsList: String {
         let noTag = NSLocalizedString("No tags", comment: "There user has not created any tags jet")
-        
+
         guard let tags else {return noTag}
 
         if tags.count == 0 {

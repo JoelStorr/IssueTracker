@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel: ViewModel
-    
-    init(dataController: DataController){
+
+    init(dataController: DataController) {
         let viewModel = ViewModel(dataController: dataController)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
