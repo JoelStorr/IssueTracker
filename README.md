@@ -1,5 +1,2 @@
-#  Issue Tracker 
-
-based on the Ultimate Portfolio Project tutorial by [Hacking with Swift](https://www.hackingwithswift.com/)
-
-
+## Über das Projekt
+Issue Tracker ist eine kleine solide App für IOS, iPad OS und Mac OS aus dem Portfolio Kurs von Hacking with Swift. Das Ziel ist es, eine iCloud App zu bauen, die es Nutzern ermöglicht, Probleme in Programmen mit dem Entwickler zu teilen. Daraufhin kann der Entwickler den Status dieser Probleme tracken und diese als behoben markieren. Da wo es möglich ist, ist die App so strukturiert, dass sie ihren UI Code aus einer einzigen Swift UI Basis bezieht.
